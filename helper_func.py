@@ -20,7 +20,7 @@ async def is_subscribed(filter, client, update):
     for i in FORCE_SUB_CHANNELS:
         try:
             member = await client.get_chat_member(chat_id=i, user_id=user_id)
-                print(member)
+            print(member)  # Corrected indentation here
             if not member.status in [ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.MEMBER]:
                 all_subs.append(False)
             else:
@@ -28,7 +28,8 @@ async def is_subscribed(filter, client, update):
         except UserNotParticipant:
             all_subs.append(False)
             print(all_subs)
-            return all(all_subs) 
+            return all(all_subs)
+
            
 
 
