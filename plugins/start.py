@@ -104,22 +104,31 @@ REPLY_ERROR = """<code>Use this command as a replay to any telegram message with
 
 @Bot.on_message(filters.command('start') & filters.private)
 async def not_joined(client: Client, message: Message):
-    buttons = [
-        [
-            InlineKeyboardButton(
-                "Join Channel",
-                url=link)
-        ] for link in client.invitelinks
+    channel_ids = [
+        -1001234567890,  # Replace with your actual channel IDs
+        -1002345678901,
+        -1003456789012,
+        -1004567890123
     ]
+
+    buttons = []
+
+    for channel_id in channel_ids:
+        invite_link = await client.export_chat_invite_link(channel_id)
+        buttons.append([
+            InlineKeyboardButton(
+                f"Join Channel",
+                url=invite_link
+            )
+        ])
+
     try:
-        buttons.append(
-            [
-                InlineKeyboardButton(
-                    text='Try Again',
-                    url=f"https://t.me/{client.username}?start={message.command[1]}"
-                )
-            ]
-        )
+        buttons.append([
+            InlineKeyboardButton(
+                text='Try Again',
+                url=f"https://t.me/{client.username}?start={message.command[1]}"
+            )
+        ])
     except IndexError:
         pass
 
@@ -135,6 +144,7 @@ async def not_joined(client: Client, message: Message):
         quote=True,
         disable_web_page_preview=True
     )
+
 
 
 @Bot.on_message(filters.command('users') & filters.private & filters.user(ADMINS))
