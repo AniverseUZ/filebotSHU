@@ -31,7 +31,8 @@ DB_NAME = os.environ.get("DATABASE_NAME", "")
 # force sub channel ids, if you want enable force sub
 FORCE_SUB_CHANNELS = []
 try:
-    for x in (os.environ.get("FORCE_SUB_CHANNELS", "-1002081389283 -1002022848378").split()):
+    # Add your channel IDs separated by space
+    for x in (os.environ.get("FORCE_SUB_CHANNELS", "-1002081389283 -1002022848378 -1003004567890 -1004005678901").split()):
         FORCE_SUB_CHANNELS.append(int(x))
 except ValueError:
     raise Exception("Your Sub Channels list does not contain valid integers.")
