@@ -1,7 +1,4 @@
- # (©)Codexbotz
-
-import base64
-import re
+ import re
 import asyncio
 from pyrogram import filters
 from pyrogram.enums import ChatMemberStatus
@@ -9,26 +6,28 @@ from config import FORCE_SUB_CHANNELS, ADMINS
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
 from pyrogram.errors import FloodWait
 
-
-async def is_subscribed(filter, client, update):
+async def force_subscribe_user(client, message):
     if not FORCE_SUB_CHANNELS:
         return True
-    user_id = update.from_user.id
+    user_id = message.from_user.id
     if user_id in ADMINS:
         return True
+
+    required_channels = FORCE_SUB_CHANNELS[:4]  # Adjust the slicing to include the first four channels
     all_subs = []
-    for i in FORCE_SUB_CHANNELS:
+
+    for channel_id in required_channels:
         try:
-            member = await client.get_chat_member(chat_id=i, user_id=user_id)
-            print(member)  # Corrected indentation here
-            if not member.status in [ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.MEMBER]:
+            member = await client.get_chat_member(chat_id=channel_id, user_id=user_id)
+            if member.status not in [ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.MEMBER]:
                 all_subs.append(False)
             else:
                 all_subs.append(True)
         except UserNotParticipant:
             all_subs.append(False)
-            print(all_subs)
-            return all(all_subs)
+
+    return all(all_subs)
+
 
            
 
