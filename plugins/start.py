@@ -105,10 +105,10 @@ REPLY_ERROR = """<code>Use this command as a replay to any telegram message with
 @Bot.on_message(filters.command('start') & filters.private)
 async def not_joined(client: Client, message: Message):
     channel_ids = [
-        -1001234567890,  # Replace with your actual channel IDs
-        -1002345678901,
-        -1003456789012,
-        -1004567890123
+        -1002081389283,  # Replace with your actual channel IDs
+        -1002143474603,
+        -1002009206763,
+        -1002022848378
     ]
 
     buttons = []
