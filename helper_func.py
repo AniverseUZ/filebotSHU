@@ -1,10 +1,17 @@
 import re
 import asyncio
+import base64
 from pyrogram import filters
 from pyrogram.enums import ChatMemberStatus
 from config import FORCE_SUB_CHANNELS, ADMINS
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
 from pyrogram.errors import FloodWait
+
+async def is_subscribed(_, __, update):
+    # Your logic to check if the user is subscribed
+    return True  # or False based on your logic
+
+subscribed = filters.create(is_subscribed)
 
 async def force_subscribe_user(client, message):
     if not FORCE_SUB_CHANNELS:
@@ -27,7 +34,6 @@ async def force_subscribe_user(client, message):
             all_subs.append(False)
 
     return all(all_subs)
-
 
            
 
@@ -118,6 +124,5 @@ def get_readable_time(seconds: int) -> str:
     time_list.reverse()
     up_time += ":".join(time_list)
     return up_time
-
 
 subscribed = filters.create(is_subscribed)
