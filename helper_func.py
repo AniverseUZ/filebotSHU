@@ -14,19 +14,25 @@ async def is_subscribed(filter, client, update):
     if not FORCE_SUB_CHANNELS:
         return True
     user_id = update.from_user.id
+    if user_id inasync def is_subscribed(filter, client, update):
+    if not FORCE_SUB_CHANNELS:
+        return True
+    user_id = update.from_user.id
     if user_id in ADMINS:
         return True
     all_subs = []
     for i in FORCE_SUB_CHANNELS:
         try:
             member = await client.get_chat_member(chat_id=i, user_id=user_id)
+            print(member)  # Corrected indentation here
             if not member.status in [ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.MEMBER]:
                 all_subs.append(False)
             else:
                 all_subs.append(True)
         except UserNotParticipant:
             all_subs.append(False)
-    return all(all_subs)
+            print(all_subs)
+            return all(all_subs)
 
 
 async def encode(string):
