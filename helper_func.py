@@ -14,7 +14,7 @@ async def is_subscribed(filter, client, update):
     if not FORCE_SUB_CHANNELS:
         return True
     user_id = update.from_user.id
-    if user_id inasync def is_subscribed(filter, client, update):
+    if user_id in async def is_subscribed(filter, client, update):
     if not FORCE_SUB_CHANNELS:
         return True
     user_id = update.from_user.id
