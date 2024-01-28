@@ -3,7 +3,7 @@
 import base64
 import re
 import asyncio
-from pyrogram import Filters
+from pyrogram import filters
 from pyrogram.enums import ChatMemberStatus
 from config import FORCE_SUB_CHANNELS, ADMINS
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
