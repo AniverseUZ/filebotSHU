@@ -32,7 +32,7 @@ DB_NAME = os.environ.get("DATABASE_NAME", "")
 FORCE_SUB_CHANNELS = []
 try:
     # Add your channel IDs separated by space
-    for x in (os.environ.get("FORCE_SUB_CHANNELS", "-1002081389283 -1002022848378 -1003004567890 -1004005678901").split()):
+    for x in (os.environ.get("FORCE_SUB_CHANNELS", "-1002081389283 -1002143474603 -1002009206763 -1002022848378").split()):
         FORCE_SUB_CHANNELS.append(int(x))
 except ValueError:
     raise Exception("Your Sub Channels list does not contain valid integers.")
