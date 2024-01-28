@@ -14,10 +14,6 @@ async def is_subscribed(filter, client, update):
     if not FORCE_SUB_CHANNELS:
         return True
     user_id = update.from_user.id
-    if user_id in async def is_subscribed(filter, client, update):
-    if not FORCE_SUB_CHANNELS:
-        return True
-    user_id = update.from_user.id
     if user_id in ADMINS:
         return True
     all_subs = []
@@ -33,6 +29,7 @@ async def is_subscribed(filter, client, update):
             all_subs.append(False)
             print(all_subs)
             return all(all_subs)
+
 
 
 async def encode(string):
