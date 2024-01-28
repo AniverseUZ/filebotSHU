@@ -7,31 +7,31 @@ from logging.handlers import RotatingFileHandler
 
 
 # Bot token @Botfather
-TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "")
+TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "6611064748:AAF25WhEznmeOvkdCUIVQKMDLwLtiENN1F8")
 
 # Your API ID from my.telegram.org
-APP_ID = int(os.environ.get("APP_ID", ""))
+APP_ID = int(os.environ.get("APP_ID", "29668491"))
 
 # Your API Hash from my.telegram.org
-API_HASH = os.environ.get("API_HASH", "")
+API_HASH = os.environ.get("API_HASH", "84feb2e86bc3fa3b0b9bc1e3a3428177")
 
 # Your db channel Id
-CHANNEL_ID = int(os.environ.get("CHANNEL_ID", ""))
+CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1002081389283"))
 
 # OWNER ID
-OWNER_ID = int(os.environ.get("OWNER_ID", ""))
+OWNER_ID = int(os.environ.get("OWNER_ID", "6216046291"))
 
 # Port
 PORT = os.environ.get("PORT", "8080")
 
 # Database
 DB_URI = os.environ.get("DATABASE_URL", "")
-DB_NAME = os.environ.get("DATABASE_NAME", "filesharexbot")
+DB_NAME = os.environ.get("DATABASE_NAME", "")
 
 # force sub channel ids, if you want enable force sub
 FORCE_SUB_CHANNELS = []
 try:
-    for x in (os.environ.get("FORCE_SUB_CHANNELS", "").split()):
+    for x in (os.environ.get("FORCE_SUB_CHANNELS", "-1002081389283 -1002022848378").split()):
         FORCE_SUB_CHANNELS.append(int(x))
 except ValueError:
     raise Exception("Your Sub Channels list does not contain valid integers.")
