@@ -121,4 +121,4 @@ def get_readable_time(seconds: int) -> str:
     return up_time
 
 
-subscribed = Filters.create(is_subscribed)
+subscribed = filters.create(is_subscribed)
