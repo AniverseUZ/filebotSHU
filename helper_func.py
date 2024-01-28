@@ -1,41 +1,32 @@
+# (©)Codexbotz
+
+import base64
 import re
 import asyncio
-import base64
 from pyrogram import filters
 from pyrogram.enums import ChatMemberStatus
 from config import FORCE_SUB_CHANNELS, ADMINS
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
 from pyrogram.errors import FloodWait
 
-async def is_subscribed(_, __, update):
-    # Your logic to check if the user is subscribed
-    return True  # or False based on your logic
 
-subscribed = filters.create(is_subscribed)
-
-async def force_subscribe_user(client, message):
+async def is_subscribed(filter, client, update):
     if not FORCE_SUB_CHANNELS:
         return True
-    user_id = message.from_user.id
+    user_id = update.from_user.id
     if user_id in ADMINS:
         return True
-
-    required_channels = FORCE_SUB_CHANNELS[:4]  # Adjust the slicing to include the first four channels
     all_subs = []
-
-    for channel_id in required_channels:
+    for i in FORCE_SUB_CHANNELS:
         try:
-            member = await client.get_chat_member(chat_id=channel_id, user_id=user_id)
-            if member.status not in [ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.MEMBER]:
+            member = await client.get_chat_member(chat_id=i, user_id=user_id)
+            if not member.status in [ChatMemberStatus.OWNER, ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.MEMBER]:
                 all_subs.append(False)
             else:
                 all_subs.append(True)
         except UserNotParticipant:
             all_subs.append(False)
-
     return all(all_subs)
-
-           
 
 
 async def encode(string):
@@ -125,4 +116,6 @@ def get_readable_time(seconds: int) -> str:
     up_time += ":".join(time_list)
     return up_time
 
+
 subscribed = filters.create(is_subscribed)
+
